@@ -96,7 +96,7 @@ export default {
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
-        baseURL: 'http://localhost/backend-bdc/public'
+        baseURL: 'https://api.arlchoose.id'
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
