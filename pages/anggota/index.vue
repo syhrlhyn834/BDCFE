@@ -23,15 +23,21 @@
 
 <script>
 export default {
-  async asyncData({ $axios }) {
-    const response = await $axios.$get('/api/web/anggotas');
-    const anggotas = response.data.data;
-
+  data() {
     return {
-      anggotas
+      anggotas: []
     };
+  },
+  async created() {
+    try {
+      const response = await this.$axios.$get('/api/web/anggotas');
+      this.anggotas = response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
 }
+
 </script>
 
 <style scoped>
