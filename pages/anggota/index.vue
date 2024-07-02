@@ -30,16 +30,29 @@
 
 <script>
 import Title from '@/components/title.vue';
+
 export default {
-  async asyncData({ $axios }) {
-    try {
-      const response = await $axios.$get('/api/web/anggotas');
-      console.log('Fetched data:', response.data.data); // Log the response to check for duplicates
-      return { anggotas: response.data.data, loading: false, error: null };
-    } catch (error) {
-      console.error('Error fetching data:', error); // Log errors
-      return { anggotas: [], loading: false, error: 'Error fetching data' };
-    }
+  data() {
+    return {
+      anggotas: [],
+      loading: true,
+      error: null,
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const response = await this.$axios.$get('/api/web/anggotas');
+        this.anggotas = response.data.data;
+        this.loading = false;
+      } catch (error) {
+        this.error = 'Error fetching data';
+        this.loading = false;
+      }
+    },
   },
 };
 </script>
@@ -86,13 +99,15 @@ export default {
   margin-bottom: 1rem;
 }
 
-.loading-message, .error-message {
+.loading-message,
+.error-message {
   font-size: 1rem;
   text-align: center;
 }
 
 @media (max-width: 768px) {
-  .name, .posisi {
+  .name,
+  .posisi {
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
   }
