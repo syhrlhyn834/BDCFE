@@ -56,7 +56,7 @@ export default {
       editorConfig: {
         removePlugins: ['Title'],
         simpleUpload: {
-          uploadUrl: 'http://localhost/backend-bdc/public/api/web/abouts/storeImage'
+          uploadUrl: 'https://arlchoose.id/api/web/abouts/storeImage'
         }
       }
     }
