@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import Title from '@/components/Title.vue';
+import Title from '@/components/title.vue';
 
 export default {
   layout: 'admin',
