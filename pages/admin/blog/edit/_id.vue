@@ -113,7 +113,7 @@ import Title from '@/components/title.vue';
         editorConfig: {
           removePlugins: ['Title'],
           simpleUpload: {
-            uploadUrl: 'http://localhost/backend-bdc/public/api/web/blogs/storeImage'
+            uploadUrl: 'https://api.arlchoose.id/api/web/blogs/storeImage'
           }
         }
       }

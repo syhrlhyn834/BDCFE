@@ -7,7 +7,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'nuxt-cms',
+        title: 'Bytedevcode',
         htmlAttrs: {
             lang: 'en'
         },
@@ -17,7 +17,7 @@ export default {
             { hid: 'description', name: 'description', content: '' }
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'icon', type: 'image/x-icon', href: 'assets/favicon.ico' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap' }
         ],
         script: [
