@@ -3,21 +3,18 @@
     <b-row class="card-row">
       <b-col md="3" sm="6" v-for="anggota in anggotas" :key="anggota.id" class="d-flex">
         <b-card
+          :img-src="anggota.image"
           img-alt="Image"
           img-top
           class="flex-fill mb-4"
-          style="height: 400px;" <!-- Sesuaikan tinggi kartu sesuai kebutuhan -->
-        >
-          <b-card-img :src="anggota.image" class="card-img-top" style="object-fit: cover; height: 100%;" />
-          <b-card-body>
-            <b-card-text>
-              <div class="name"><strong>{{ anggota.name }}</strong></div>
-              <div class="posisi text-black">{{ anggota.posisi }}</div>
-            </b-card-text>
-            <nuxt-link :to="{ name: 'anggota-slug', params: { slug: anggota.slug } }">
-              <b-button variant="primary">Selengkapnya...</b-button>
-            </nuxt-link>
-          </b-card-body>
+          style="height: 400px;">
+          <b-card-text>
+            <div class="name"><strong>{{ anggota.name }}</strong></div>
+            <div class="posisi text-black">{{ anggota.posisi }}</div>
+          </b-card-text>
+          <nuxt-link :to="{name: 'anggota-slug', params: {slug: anggota.slug}}">
+            <b-button variant="primary">Selengkapnya...</b-button>
+          </nuxt-link>
         </b-card>
       </b-col>
     </b-row>
@@ -74,8 +71,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .name,
-  .posisi {
+  .name, .posisi {
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
   }
