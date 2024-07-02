@@ -35,6 +35,20 @@
                 <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
               </div>
             </div>
+            <div class="form-group">
+              <label>ALAMAT FOOTER</label>
+              <input type="text" v-model="footer.alamat" placeholder="Masukkan Alamat" class="form-control">
+              <div v-if="validation.alamat" class="mt-2">
+                <b-alert show variant="danger">{{ validation.alamat[0] }}</b-alert>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>KONTAK FOOTER</label>
+              <input type="text" v-model="footer.kontak" placeholder="Masukkan Kontak" class="form-control">
+              <div v-if="validation.kontak" class="mt-2">
+                <b-alert show variant="danger">{{ validation.kontak[0] }}</b-alert>
+              </div>
+            </div>
             <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> UPDATE</button>
             <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
           </form>
@@ -53,7 +67,9 @@ export default {
     return {
       footer: {
         name: '',
-        description: ''
+        description: '',
+        alamat: '',
+        kontak: ''
       },
       validation: []
     }
@@ -72,6 +88,8 @@ export default {
       let formData = new FormData();
       formData.append('name', this.footer.name);
       formData.append('description', this.footer.description);
+      formData.append('alamat', this.footer.alamat);
+      formData.append('kontak', this.footer.kontak);
       formData.append("_method", "PATCH");
 
       try {

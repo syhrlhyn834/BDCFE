@@ -2,18 +2,18 @@
   <footer class="footer-top pt-4">
     <b-container>
       <b-row>
-        <b-col md="4">
-          <div v-for="header in headers" :key="header.id">
+        <b-col md="4" class="footer-section">
+          <div v-for="(header, index) in headers" :key="`header-${header.id}-${index}`">
             <h5>{{ header.name }}</h5>
           </div>
           <hr>
-          <p v-for="footer in footers" :key="footer.id">{{ footer.description }}</p>
+          <p v-for="(footer, index) in footers" :key="`footer-description-${footer.id}-${index}`">{{ footer.description }}</p>
         </b-col>
-        <b-col md="4">
+        <b-col md="4" class="footer-section">
           <h5>SOSIAL MEDIA</h5>
           <hr>
           <div>
-            <p v-for="sosmed in sosmeds" :key="sosmed.id">
+            <p v-for="(sosmed, index) in sosmeds" :key="`sosmed-${sosmed.id}-${index}`">
               <a :href="getSosmedUrl(sosmed)" class="d-inline-flex align-items-center text-decoration-none" style="color: white;">
                 <i :class="sosmed.logo" style="width: 24px; height: 24px; margin-right: 5px;"></i>
                 {{ sosmed.name }}
@@ -21,21 +21,25 @@
             </p>
           </div>
         </b-col>
-        <b-col md="4">
+        <b-col md="4" class="footer-section">
           <h5>ALAMAT</h5>
           <hr>
-          <p><i aria-hidden="true" class="fa fa-map-marker"></i> Jl. Jendral Sudirman No.83, Daerah Khusus
-            Ibukota Jakarta, Indonesia</p>
+          <p v-for="(footer, index) in footers" :key="`footer-address-${footer.id}-${index}`">
+            <i aria-hidden="true" class="fa fa-map-marker"></i> {{ footer.alamat }}
+            <br><br>
+            <i class="fas fa-phone"></i> {{ footer.kontak }}
+          </p>
         </b-col>
       </b-row>
     </b-container>
     <b-container fluid class="footer-bottom">
       <b-row class="p-3 justify-content-center">
-        <div class="text-white font-weight-bold" v-for="footer in footers" :key="footer.id">{{ footer.name }}</div>
+        <div class="text-white font-weight-bold" v-for="(footer, index) in footers" :key="`footer-name-${footer.id}-${index}`">{{ footer.name }}</div>
       </b-row>
     </b-container>
   </footer>
 </template>
+
 
 <script>
 export default {
@@ -48,7 +52,7 @@ export default {
   },
   async fetch() {
     try {
-      const [ footersResponse, sosmedsResponse, headersResponse] = await Promise.all([
+      const [footersResponse, sosmedsResponse, headersResponse] = await Promise.all([
         this.$axios.get('/api/web/footers'),
         this.$axios.get('/api/web/sosmeds'),
         this.$axios.get('/api/web/headers')
@@ -70,4 +74,8 @@ export default {
 
 <style scoped>
 /* Styling khusus untuk komponen ini */
+.footer-section {
+  margin-bottom: 2.5rem; /* Adjust the space between sections */
+}
+
 </style>

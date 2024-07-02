@@ -23,7 +23,11 @@
           <form @submit.prevent="updateHeader">
             <div class="form-group">
               <label>LOGO</label>
-              <input type="file" @change="handleFileChange" class="form-control">
+              <input type="file" @change="handleFileChange('image')" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>IMAGE HOMEPAGE</label>
+              <input type="file" @change="handleFileChange('image2')" class="form-control">
             </div>
             <div class="form-group">
               <label>TITLE WEBSITE</label>
@@ -57,12 +61,17 @@
 
 <script>
 import Title from '@/components/Title.vue';
+
 export default {
   layout: 'admin',
+  components: {
+    Title
+  },
   data() {
     return {
       header: {
         image: '',
+        image2: '',
         title: '',
         name: '',
         description: ''
@@ -73,20 +82,20 @@ export default {
   mounted() {
     this.$axios.get(`/api/admin/headers/${this.$route.params.id}`)
       .then(response => {
-        this.header = { ...response.data.data, image: '' };
+        this.header = { ...response.data.data, image: '', image2: '' };
       })
       .catch(error => {
         console.error(error);
       });
   },
   methods: {
-    handleFileChange(e) {
-      let image = e.target.files[0];
+    handleFileChange(field) {
+      let image = event.target.files[0];
       if (image && image.type.match('image.*')) {
-        this.header.image = image;
+        this.header[field] = image;
       } else {
-        e.target.value = '';
-        this.header.image = null;
+        event.target.value = '';
+        this.header[field] = null;
         this.$swal.fire({
           title: 'OOPS!',
           text: "Format File Tidak Didukung!",
@@ -100,6 +109,9 @@ export default {
       let formData = new FormData();
       if (this.header.image) {
         formData.append('image', this.header.image);
+      }
+      if (this.header.image2) {
+        formData.append('image2', this.header.image2);
       }
       formData.append('title', this.header.title);
       formData.append('name', this.header.name);

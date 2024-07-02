@@ -1,0 +1,15 @@
+/* Transisi untuk layout */
+.layout-enter-active, .layout-leave-active {
+  transition: opacity 0.3s;
+}
+.layout-enter, .layout-leave-to /* .layout-leave-active di versi sebelumnya */ {
+  opacity: 0;
+}
+
+/* Transisi untuk halaman */
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter, .page-leave-to /* .page-leave-active di versi sebelumnya */ {
+  opacity: 0;
+}

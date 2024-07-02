@@ -24,6 +24,9 @@
             <template v-slot:cell(image)="data">
               <img class="img-fluid" width="100" :src="data.item.image" />
             </template>
+            <template v-slot:cell(image2)="data">
+              <img class="img-fluid" width="100" :src="data.item.image2" />
+            </template>
             <template v-slot:cell(actions)="row">
               <b-button :to="{name: 'admin-header-edit-id', params: {id: row.item.id}}" variant="warning" size="sm">EDIT</b-button>
             </template>
@@ -56,6 +59,7 @@ export default {
     return {
       fields: [
         { label: 'Logo Website', key: 'image' },
+        { label: 'Image Home', key: 'image2' },
         { label: 'Title Website', key: 'title' },
         { label: 'Name Website', key: 'name' },
         { label: 'Deskripsi Website', key: 'description' },

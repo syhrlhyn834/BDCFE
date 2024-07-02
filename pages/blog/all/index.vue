@@ -1,16 +1,6 @@
 <template>
   <b-container class="mt-5 mb-5">
     <Title :pageTitle="'All Blog'" />
-    <b-row class="mb-3">
-      <b-col md="8" sm="12">
-        <b-form-input v-model="search" @keypress.enter="searchData" size="sm" class="border-0"
-                      placeholder="tulis kata kunci..." style="margin-bottom: 10px;">
-        </b-form-input>
-      </b-col>
-      <b-col md="4" sm="12">
-        <b-button @click="searchData" size="sm" class="my-2 my-sm-0" variant="primary" style="margin-bottom: 10px;">CARI</b-button>
-      </b-col>
-    </b-row>
     <b-row>
       <b-col md="4" sm="12" v-for="blog in blogs" :key="blog.id">
         <b-card :img-src="blog.image" img-top tag="article" class="mb-2 h-100 rounded-lg">
@@ -57,14 +47,6 @@ export default {
     }
   },
   methods: {
-    searchData() {
-      this.$router.push({
-        name: 'search',
-        query: {
-          q: this.search
-        }
-      });
-    },
     changePage(page) {
       this.$router.push({
         path: this.$route.path,

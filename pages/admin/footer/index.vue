@@ -54,6 +54,9 @@ export default {
       fields: [
         { label: 'Name Footer', key: 'name' },
         { label: 'Deskripsi Footer', key: 'description' },
+        { label: 'Alamat', key: 'alamat'},
+        { label: 'Kontak', key: 'kontak'},
+
         { label: 'Actions', key: 'actions', tdClass: 'text-center' }
       ],
 

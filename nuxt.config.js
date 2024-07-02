@@ -1,5 +1,4 @@
 export default {
-
     // Target Deployment
     target: 'server',
 
@@ -12,38 +11,19 @@ export default {
         htmlAttrs: {
             lang: 'en'
         },
-        meta: [{
-                charset: 'utf-8'
-            },
-            {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1'
-            },
-            {
-                hid: 'description',
-                name: 'description',
-                content: ''
-            }
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { hid: 'description', name: 'description', content: '' }
         ],
-        link: [{
-                rel: 'icon',
-                type: 'image/x-icon',
-                href: '/favicon.ico'
-            },
-            {
-                rel: 'stylesheet',
-                href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'
-            }
+        link: [
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap' }
         ],
-        script: [{
-                src: '/js/jquery/jquery.min.js'
-            },
-            {
-                src: '/js/bootstrap/js/bootstrap.bundle.min.js'
-            },
-            {
-                src: '/js/adminlte.min.js'
-            },
+        script: [
+            { src: '/js/jquery/jquery.min.js' },
+            { src: '/js/bootstrap/js/bootstrap.bundle.min.js' },
+            { src: '/js/adminlte.min.js' }
         ]
     },
 
@@ -51,7 +31,8 @@ export default {
     css: [
         '@/assets/css/fontawesome-free/css/all.min.css',
         '@/assets/css/adminlte.min.css',
-        'bootstrap-icons/font/bootstrap-icons.css'
+        'bootstrap-icons/font/bootstrap-icons.css',
+        '@/assets/css/main.css'
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -69,11 +50,11 @@ export default {
         'bootstrap-vue/nuxt',
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
-        //https://auth.nuxtjs.org/
+        // https://auth.nuxtjs.org/
         '@nuxtjs/auth-next',
-        //https://github.com/maulayyacyber/nuxt-vue-multiselect
+        // https://github.com/maulayyacyber/nuxt-vue-multiselect
         'nuxt-multiselect',
-        //https://github.com/avil13/vue-sweetalert2
+        // https://github.com/avil13/vue-sweetalert2
         'vue-sweetalert2/nuxt',
     ],
 
@@ -119,5 +100,14 @@ export default {
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+
+    layoutTransition: {
+        name: 'layout',
+        mode: 'out-in'
+    },
+    pageTransition: {
+        name: 'page',
+        mode: 'out-in'
+    }
 }

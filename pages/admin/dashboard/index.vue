@@ -22,6 +22,18 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
+            <span class="info-box-icon bg-primary"><i class="fa fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">ANGGOTA</span>
+              <span>
+                <hr></span>
+              <span class="info-box-number">{{ anggotas }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
             <span class="info-box-icon bg-success"><i class="fa fa-folder"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">CATEGORIES</span>
@@ -64,6 +76,7 @@ import Title from '@/components/title.vue';
       return {
         'users': dashboard.data.users,
         'blogs': dashboard.data.blogs,
+        'anggotas': dashboard.data.anggotas,
         'categories': dashboard.data.categories,
       }
     },

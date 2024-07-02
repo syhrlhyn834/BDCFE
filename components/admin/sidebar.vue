@@ -34,6 +34,14 @@
           </p>
         </nuxt-link>
       </li>
+      <li class="nav-item">
+        <nuxt-link :to="{name: 'admin-anggota'}" class="nav-link">
+          <i class="nav-icon fas fa-book-open"></i>
+          <p>
+            Anggota
+          </p>
+        </nuxt-link>
+      </li>
 
       <li class="nav-header">
         <h6>SETTINGS</h6>
@@ -56,7 +64,14 @@
           </p>
         </nuxt-link>
       </li>
-
+      <li class="nav-item">
+        <nuxt-link :to="{name: 'admin-about'}" class="nav-link">
+          <i class="nav-icon fas fa-clone"></i>
+          <p>
+            About
+          </p>
+        </nuxt-link>
+      </li>
       <li class="nav-item">
         <nuxt-link :to="{name: 'admin-slider'}" class="nav-link">
           <i class="nav-icon fas fa-image"></i>

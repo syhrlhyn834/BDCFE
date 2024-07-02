@@ -1,29 +1,34 @@
 <template>
   <div class="homepage vh-100 d-flex flex-column justify-content-center align-items-center">
     <Title :pageTitle="'Beranda'" />
-    <div class="video-background position-absolute w-100 h-100">
-      <!-- Replace iframe with image -->
-      <img src="https://t4.ftcdn.net/jpg/06/00/90/17/360_F_600901739_93i8HBQhHjqXyvNBrHWEiJOveQYdMe6m.jpg" alt="Background Image" class="embed-responsive-item" />
+    <div class="background-container position-absolute w-100 h-100" v-for="header in headers" :key="header.id">
+      <img :src="header.image2" alt="Background Image" class="background-image" />
     </div>
     <div class="overlay position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
-      <div class="text-center" v-for="header in headers" :key="header.id">
-        <h1 class="display-4">{{ header.description }}</h1>
-        <p class="lead">{{ header.name }}</p>
-        <b-button to="/about" variant="primary" class="mt-4">About</b-button>
-      </div>
+      <transition name="page">
+        <div class="text-center">
+          <h1 class="display-4">{{ headers.length > 0 ? headers[0].description : '' }}</h1>
+          <p class="lead">{{ headers.length > 0 ? headers[0].name : '' }}</p>
+          <b-button to="/about" variant="primary" class="mt-4">About</b-button>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
 import Title from '@/components/title.vue';
+
 export default {
+  components: {
+    Title
+  },
   data() {
     return {
       headers: []
     };
   },
-  async fetch() {
+  async mounted() {
     try {
       const headersResponse = await this.$axios.get('/api/web/headers');
       this.headers = headersResponse.data.data;
@@ -40,11 +45,11 @@ export default {
   overflow: hidden;
 }
 
-.video-background {
+.background-container {
   z-index: -1;
 }
 
-.embed-responsive-item {
+.background-image {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensure image covers the entire container */
