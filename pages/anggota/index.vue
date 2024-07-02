@@ -1,7 +1,7 @@
 <template>
   <b-container class="mt-5 mb-5">
     <b-row class="card-row">
-      <b-col md="3" sm="6" v-for="anggota in anggotas" :key="anggota.id" class="d-flex">
+      <b-col md="3" sm="6" v-for="anggota in anggotas" :key="anggota.id" class="d-flex" v-if="anggotas.length > 0">
         <b-card
           :img-src="anggota.image"
           img-alt="Image"
