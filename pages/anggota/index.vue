@@ -1,5 +1,6 @@
 <template>
   <b-container class="mt-5 mb-5">
+    <Title :pageTitle="'Daftar Anggota'" />
     <b-row class="card-row">
       <b-col md="3" sm="6" v-for="anggota in anggotas" :key="anggota.id" class="d-flex">
         <b-card v-if="!loading" class="flex-fill mb-4">
@@ -28,12 +29,15 @@
 </template>
 
 <script>
+import Title from '@/components/title.vue';
 export default {
   async asyncData({ $axios }) {
     try {
       const response = await $axios.$get('/api/web/anggotas');
+      console.log('Fetched data:', response.data.data); // Log the response to check for duplicates
       return { anggotas: response.data.data, loading: false, error: null };
     } catch (error) {
+      console.error('Error fetching data:', error); // Log errors
       return { anggotas: [], loading: false, error: 'Error fetching data' };
     }
   },
