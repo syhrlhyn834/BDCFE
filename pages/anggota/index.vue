@@ -1,20 +1,26 @@
 <template>
   <b-container class="mt-5 mb-5">
     <b-row class="card-row">
-      <b-col md="3" sm="6" v-for="anggota in anggotas" :key="anggota.id" class="d-flex" v-if="anggotas.length > 0">
-        <b-card
-          :img-src="anggota.image"
-          img-alt="Image"
-          img-top
-          class="flex-fill mb-4"
-          style="height: 400px;">
-          <b-card-text>
-            <div class="name"><strong>{{ anggota.name }}</strong></div>
-            <div class="posisi text-black">{{ anggota.posisi }}</div>
-          </b-card-text>
-          <nuxt-link :to="{name: 'anggota-slug', params: {slug: anggota.slug}}">
-            <b-button variant="primary">Selengkapnya...</b-button>
-          </nuxt-link>
+      <b-col md="3" sm="6" v-for="anggota in anggotas" :key="anggota.id" class="d-flex">
+        <b-card v-if="!loading" class="flex-fill mb-4">
+          <b-card-img :src="anggota.image" alt="Image" top class="card-img"></b-card-img>
+          <b-card-body>
+            <b-card-text>
+              <div class="name"><strong>{{ anggota.name }}</strong></div>
+              <div class="posisi text-black">{{ anggota.posisi }}</div>
+            </b-card-text>
+            <nuxt-link :to="{ name: 'anggota-slug', params: { slug: anggota.slug } }">
+              <b-button variant="primary">Selengkapnya...</b-button>
+            </nuxt-link>
+          </b-card-body>
+        </b-card>
+        <b-card v-else class="flex-fill mb-4">
+          <b-card-body>
+            <b-card-text>
+              <div v-if="error" class="error-message">{{ error }}</div>
+              <div v-else class="loading-message">Loading...</div>
+            </b-card-text>
+          </b-card-body>
         </b-card>
       </b-col>
     </b-row>
@@ -23,21 +29,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      anggotas: []
-    };
-  },
-  async created() {
+  async asyncData({ $axios }) {
     try {
-      const response = await this.$axios.$get('/api/web/anggotas');
-      this.anggotas = response.data.data;
+      const response = await $axios.$get('/api/web/anggotas');
+      return { anggotas: response.data.data, loading: false, error: null };
     } catch (error) {
-      console.error('Error fetching data:', error);
+      return { anggotas: [], loading: false, error: 'Error fetching data' };
     }
-  }
-}
-
+  },
+};
 </script>
 
 <style scoped>
@@ -66,6 +66,12 @@ export default {
   margin-bottom: 1.5rem;
 }
 
+.card-img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .name {
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -74,6 +80,11 @@ export default {
 .posisi {
   font-size: 0.875rem;
   margin-bottom: 1rem;
+}
+
+.loading-message, .error-message {
+  font-size: 1rem;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

@@ -48,8 +48,8 @@
               <b-img
                 :src="item.image"
                 fluid
-                class="me-3 rounded"
-                style="width: 50px; height: 50px;"
+                class="me-3 rounded img-thumbnail"
+                alt="Image"
               ></b-img>
               <div class="ms-3">
                 <nuxt-link :to="{ name: 'anggota-slug', params: { slug: item.slug }}">
@@ -113,5 +113,11 @@ h2 {
 
 .rounded {
   border-radius: 8px; /* Adjust this value as needed */
+}
+
+.img-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 </style>
